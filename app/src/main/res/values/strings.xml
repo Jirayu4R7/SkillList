@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SkillList</string>
+
+    <string name="label_skill_catalog">Select Catalog</string>
+    <string name="label_skill_sub_catalog">Select Sub Catalog</string>
+    <string name="label_text_view_catalog">Catalog</string>
+    <string name="label_text_view_sub_catalog">Sub-Catalog</string>
+    <string name="label_text_view_skill_name">Skill Name</string>
+    <string name="label_button_save">Save</string>
+    <string name="label_toast_slips_fill_all_fields">Please fill in all fields.</string>
+    <string name="label_toast_slips_select_catalog">Please Select Catalog</string>
 </resources>
