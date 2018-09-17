@@ -3,6 +3,7 @@ package com.songshakes.internship.skilllist.fragment
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.songshakes.internship.skilllist.R
+import com.songshakes.internship.skilllist.activity.MainActivity
 import com.songshakes.internship.skilllist.adapter.RecyclerViewSkillsListAdapter
 import com.songshakes.internship.skilllist.model.SkillData
 
@@ -24,7 +26,6 @@ class SkillListsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             skill = it.getParcelable("SKILL_DETAIL")
             Log.d("SkillList", "SkillName : ${skill?.skillName} Catalog : ${skill?.skillCatalog} Sub : ${skill?.skillSubCatalog}")

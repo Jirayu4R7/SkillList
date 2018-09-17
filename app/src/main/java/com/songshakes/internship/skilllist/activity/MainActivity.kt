@@ -3,7 +3,6 @@ package com.songshakes.internship.skilllist.activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.songshakes.internship.skilllist.R
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_add_skill -> {
-                checkFragment()
+                replaceFragment(AddSkillFragment.newInstance())
                 return true
             }
             android.R.id.home -> {
@@ -58,19 +57,5 @@ class MainActivity : AppCompatActivity() {
                     .addToBackStack(null)
                     .commit()
         }
-    }
-
-    private fun checkFragment() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.contentContainer)
-        if (fragment is AddSkillFragment == false) {
-            replaceFragment(AddSkillFragment.newInstance())
-//            menuAddSkill.isVisible = false
-//            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//            supportActionBar?.setHomeButtonEnabled(true)
-        }
-//        if (fragment is SkillListsFragment == false) {
-//            menuAddSkill.isVisible = true
-//            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-//        }
     }
 }

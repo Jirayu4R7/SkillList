@@ -2,11 +2,11 @@ package com.songshakes.internship.skilllist.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -24,10 +24,13 @@ class AddSkillFragment : Fragment(), BottomSheetDialogFragmentListener {
     private lateinit var editTextSkillSubCatalog: EditText
     private lateinit var buttonSave: Button
 
+    private var item: MenuItem? = null
     private lateinit var listener: BottomSheetDialogFragmentListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         listener = this
     }
 
@@ -37,6 +40,14 @@ class AddSkillFragment : Fragment(), BottomSheetDialogFragmentListener {
         val rootView = inflater.inflate(R.layout.fragment_add_skill, container, false)
         initInstance(rootView)
         return rootView
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        item = menu?.findItem(R.id.menu_add_skill)
+        item?.let {
+            it.isVisible = false
+        }
     }
 
     private fun initInstance(rootView: View) {
@@ -92,12 +103,19 @@ class AddSkillFragment : Fragment(), BottomSheetDialogFragmentListener {
                 args.putParcelable("SKILL_DETAIL", skillDetail)
                 fragment.arguments = args
                 fragmentManager?.apply {
-                    beginTransaction().replace(R.id.contentContainer, fragment).commit()
+                    popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    beginTransaction().replace(R.id.contentContainer, fragment)
+                            .commit()
                 }
             } else {
                 showToast(getString(R.string.label_toast_slips_fill_all_fields))
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
     private fun showToast(text: String) {
